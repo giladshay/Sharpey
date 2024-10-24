@@ -29,6 +29,6 @@ while (true) {
         List<Token> tokens = run(text);
         printArray(tokens);
     } catch (MyException e) {
-        Console.WriteLine(e.Message);
+        Console.WriteLine(e.ToString());
     }
 }
