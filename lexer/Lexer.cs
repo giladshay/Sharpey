@@ -5,10 +5,10 @@ using Sharpey.errors;
 using Sharpey.tokens;
 
 namespace Sharpey.lexer {
-    public class Lexer(string text)
+    public class Lexer(string text, string filename)
     {
         private readonly string text = text;
-        private int position = 0;
+        private Position position = new(0, 0, 0, filename);
         private static readonly char NULL_CHARACTER = '\0';
         private static readonly Dictionary<char, TokenType> tokenMap = new Dictionary<char, TokenType> {
             {'+', TokenType.Addition},
@@ -31,8 +31,10 @@ namespace Sharpey.lexer {
                 } else if (char.IsDigit(GetCurrentCharacter())) {
                     tokens.Add(TokenizeNumericToken());
                 } else {
+                    Position start = position.Clone();
                     char charcater = GetCurrentCharacter();
-                    throw new IllegalCharacterException("'" + charcater + "'");
+                    Advance();
+                    throw new IllegalCharacterException("'" + charcater + "'", start, position);
                 }
             }
 
@@ -40,12 +42,12 @@ namespace Sharpey.lexer {
         }
 
         private void Advance() {
-            position ++;
+            position.Advance(GetCurrentCharacter());
         }
 
         private char GetCurrentCharacter() {
-            if (position < text.Length) {
-                return text[position];
+            if (position.Index < text.Length) {
+                return text[position.Index];
             } 
             return NULL_CHARACTER;
         }

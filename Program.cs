@@ -5,8 +5,8 @@ using Sharpey.tokens;
 
 const string SHELL_PROMPT = ">> ";
 
-static List<Token> run(string text) {
-    Lexer lexer = new Lexer(text);
+static List<Token> run(string text, string filename) {
+    Lexer lexer = new(text, filename);
     List<Token> tokens = lexer.Tokenize();
     return tokens;
 }
@@ -26,7 +26,7 @@ while (true) {
         continue;
     }
     try {
-        List<Token> tokens = run(text);
+        List<Token> tokens = run(text, "<stdin>");
         printArray(tokens);
     } catch (MyException e) {
         Console.WriteLine(e.ToString());
