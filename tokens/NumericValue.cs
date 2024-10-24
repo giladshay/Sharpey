@@ -13,6 +13,6 @@ namespace Sharpey.tokens {
             integerValue = 0;
             isFloat = true;
         }
-        public new string ToString => isFloat ? floatValue.ToString() : integerValue.ToString();
+        public new string ToString() => isFloat ? floatValue.ToString() : integerValue.ToString();
     }
 }

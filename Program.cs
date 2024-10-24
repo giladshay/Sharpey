@@ -14,7 +14,7 @@ static List<Token> run(string text) {
 static void printArray(List<Token> tokens) {
     Console.Write('[');
     foreach (Token token in tokens) {
-        Console.Write(token.ToString + ", ");
+        Console.Write(token.ToString() + ", ");
     }
     Console.WriteLine(']'); 
 }

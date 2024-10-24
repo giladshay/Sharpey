@@ -4,6 +4,6 @@ namespace Sharpey.tokens {
 
         public TokenType GetTokenType() => type;
 
-        public new virtual string? ToString => type.ToString();
+        public new virtual string? ToString() => type.ToString();
     }
 }

@@ -1,13 +1,13 @@
 using System.Xml.Schema;
 
 namespace Sharpey.tokens {
-    public class NumericToken(NumericTokenType numericType, NumericTokenValue value) : Token(TokenType.Value)
+    public class NumericToken(NumericTokenType type, NumericTokenValue value) : Token(TokenType.Value)
     {
         private readonly NumericTokenValue value = value;
-        private readonly NumericTokenType numericType = numericType; 
+        private readonly NumericTokenType type = type; 
 
         public NumericTokenValue GetTokenValue() => value;
 
-        public override string ToString => numericType.ToString() + value.ToString;
+        public override string ToString() => string.Format("{0}:{1}", type.ToString(), value.ToString());
     }
 }
